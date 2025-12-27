@@ -9,13 +9,10 @@
 
   <style>
     :root{
-      /* Brand */
       --bg:#020A06;
       --brand:#1A472A;
       --ink:#eafff2;
       --muted:#b6e3c5;
-
-      /* UI */
       --line:rgba(234,255,242,.10);
       --shadow: 0 20px 80px rgba(0,0,0,.62);
       --r:18px;
@@ -73,7 +70,6 @@
     .r3{width:360px;height:360px; left:10%; top:62%; animation-duration: 36s; opacity:.12}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* Layout */
     .container{max-width:1200px; margin:0 auto; padding:0 20px;}
 
     /* NAV */
@@ -96,21 +92,9 @@
       overflow:hidden;
       display:grid; place-items:center;
     }
-    .brandMark img{
-      width:100%; height:100%;
-      object-fit:cover;
-      display:block;
-      transform: scale(1.02);
-    }
-    .brandText b{
-      letter-spacing:.18em; font-size:12px; color:rgba(234,255,242,.86);
-      display:block;
-    }
-    .brandText span{
-      display:block; font-weight:900; font-size:16px; letter-spacing:.08em;
-      color:var(--ink);
-      text-transform:uppercase;
-    }
+    .brandMark img{width:100%; height:100%; object-fit:cover; display:block; transform: scale(1.02);}
+    .brandText b{letter-spacing:.18em; font-size:12px; color:rgba(234,255,242,.86); display:block;}
+    .brandText span{display:block; font-weight:900; font-size:16px; letter-spacing:.08em; color:var(--ink); text-transform:uppercase;}
 
     .links{display:flex; gap:18px; align-items:center;}
     .links a{
@@ -175,10 +159,7 @@
     }
     .heroMain{padding:28px 28px 22px;}
 
-    .heroTop{
-      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
-      margin-bottom:8px;
-    }
+    .heroTop{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:8px;}
     .heroCrest{display:flex; align-items:center; gap:12px;}
     .crest{
       width:62px; height:62px; border-radius:20px;
@@ -188,7 +169,6 @@
       box-shadow: 0 18px 70px rgba(0,0,0,.40);
     }
     .crest img{width:100%; height:100%; object-fit:cover; display:block;}
-
     .kicker{
       display:flex; gap:10px; flex-wrap:wrap; align-items:center;
       font-size:12px; color: rgba(234,255,242,.78); letter-spacing:.14em;
@@ -275,16 +255,8 @@
       display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
       margin-bottom:18px;
     }
-    .sectionHead h2{
-      margin:0; font-size:26px; letter-spacing:-.01em; text-transform:uppercase;
-    }
-    .sectionHead p{
-      margin:0;
-      color: rgba(182,227,197,.92);
-      max-width:70ch;
-      line-height:1.6;
-      font-size:14px
-    }
+    .sectionHead h2{margin:0; font-size:26px; letter-spacing:-.01em; text-transform:uppercase;}
+    .sectionHead p{margin:0; color: rgba(182,227,197,.92); max-width:70ch; line-height:1.6; font-size:14px}
 
     .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;}
     .feature{padding:18px}
@@ -325,6 +297,55 @@
     .reveal{opacity:0; transform: translateY(14px); transition: .6s ease;}
     .reveal.on{opacity:1; transform:none}
 
+    /* === MEDIA KIT MODAL (popup inside the site) === */
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      z-index:999;
+    }
+    .modal.show{display:block}
+    .modal__backdrop{
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(8px);
+    }
+    .modal__panel{
+      position:relative;
+      width: min(1100px, 92vw);
+      height: min(680px, 82vh);
+      margin: 7vh auto 0;
+      border-radius: 18px;
+      border: 1px solid rgba(234,255,242,.12);
+      background: rgba(2,10,6,.75);
+      box-shadow: 0 30px 120px rgba(0,0,0,.7);
+      overflow:hidden;
+    }
+    .modal__top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:12px;
+      border-bottom:1px solid rgba(234,255,242,.10);
+      background: rgba(0,0,0,.20);
+    }
+    .modal__title{
+      font-weight:900;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      font-size:12px;
+      color: rgba(234,255,242,.9);
+    }
+    .modal__content{height: calc(100% - 52px);}
+    .modal__content iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      background: rgba(0,0,0,.20);
+    }
+
     @media (max-width: 980px){
       .heroGrid{grid-template-columns: 1fr;}
       .grid3{grid-template-columns: 1fr}
@@ -334,53 +355,6 @@
     @media (max-width: 420px){
       .statbar{grid-template-columns: 1fr}
     }
-    .modal{
-  position:fixed; inset:0;
-  display:none;
-  z-index:999;
-}
-.modal.show{display:block}
-.modal__backdrop{
-  position:absolute; inset:0;
-  background: rgba(0,0,0,.65);
-  backdrop-filter: blur(8px);
-}
-.modal__panel{
-  position:relative;
-  width: min(1100px, 92vw);
-  height: min(680px, 82vh);
-  margin: 7vh auto 0;
-  border-radius: 18px;
-  border: 1px solid rgba(234,255,242,.12);
-  background: rgba(2,10,6,.75);
-  box-shadow: 0 30px 120px rgba(0,0,0,.7);
-  overflow:hidden;
-}
-.modal__top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  padding: 12px 12px;
-  border-bottom: 1px solid rgba(234,255,242,.10);
-  background: rgba(0,0,0,.20);
-}
-.modal__title{
-  font-weight: 900;
-  letter-spacing: .10em;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: rgba(234,255,242,.9);
-}
-.modal__content{
-  height: calc(100% - 52px);
-}
-.modal__content iframe{
-  width:100%;
-  height:100%;
-  border:0;
-  background: rgba(0,0,0,.20);
-}
   </style>
 </head>
 
@@ -444,7 +418,6 @@
             </p>
 
             <div class="ctaRow">
-              <!-- Media Kit now opens the PDF file -->
               <button class="btn primary" id="openMediaKit">Media Kit</button>
               <button class="btn" id="scrollBtn">Explore ↓</button>
             </div>
@@ -484,7 +457,6 @@
       </div>
     </section>
 
-    <!-- ABOUT (cards) -->
     <section id="about" class="section container">
       <div class="sectionHead reveal">
         <div>
@@ -560,19 +532,35 @@
       <div class="container foot">
         <div>© <span id="year"></span> PENTALYON • PRIDE NEVER SLEEPS</div>
         <div class="social">
-          <a href="#" id="tw">X / Twitter</a>
-          <a href="#" id="yt">YouTube</a>
-          <a href="#" id="tt">TikTok</a>
+          <a href="#" onclick="return false;">X / Twitter</a>
+          <a href="#" onclick="return false;">YouTube</a>
+          <a href="#" onclick="return false;">TikTok</a>
         </div>
       </div>
     </footer>
   </main>
 
+  <!-- MEDIA KIT MODAL (must be inside the page, not a link) -->
+  <div class="modal" id="mkModal" aria-hidden="true">
+    <div class="modal__backdrop" id="mkClose"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Media Kit">
+      <div class="modal__top">
+        <div class="modal__title">Pentalyon — Media Kit</div>
+        <button class="btn" id="mkCloseBtn">Close</button>
+      </div>
+      <div class="modal__content">
+        <iframe id="mkFrame" src="" title="Media Kit PDF"></iframe>
+      </div>
+    </div>
+  </div>
+
   <script>
     const $ = (q, el=document) => el.querySelector(q);
     const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+
     $("#year").textContent = new Date().getFullYear();
 
+    // Explore scroll
     $("#scrollBtn").addEventListener("click", () => $("#about").scrollIntoView({behavior:"smooth"}));
 
     // Reveal on scroll
@@ -600,42 +588,30 @@
     if(menuBtn){
       menuBtn.addEventListener("click", ()=> $("#about").scrollIntoView({behavior:"smooth"}));
     }
-    <div class="modal" id="mkModal" aria-hidden="true">
-  <div class="modal__backdrop" id="mkClose"></div>
 
-  <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Media Kit">
-    <div class="modal__top">
-      <div class="modal__title">Pentalyon — Media Kit</div>
-      <button class="btn" id="mkCloseBtn">Close</button>
-    </div>
-
-    <div class="modal__content">
-      <iframe id="mkFrame" src="" title="Media Kit PDF"></iframe>
-    </div>
-  </div>
-</div>
+    // === MEDIA KIT MODAL JS (opens inside the site) ===
     const mkModal = document.getElementById("mkModal");
-const mkFrame = document.getElementById("mkFrame");
+    const mkFrame = document.getElementById("mkFrame");
 
-function openMK(){
-  mkFrame.src = "media-kit.pdf#view=FitH";
-  mkModal.classList.add("show");
-  mkModal.setAttribute("aria-hidden", "false");
-}
+    function openMK(){
+      // Must be in the same folder as index.html
+      mkFrame.src = "media-kit.pdf#view=FitH";
+      mkModal.classList.add("show");
+      mkModal.setAttribute("aria-hidden", "false");
+    }
+    function closeMK(){
+      mkModal.classList.remove("show");
+      mkModal.setAttribute("aria-hidden", "true");
+      mkFrame.src = ""; // stop loading
+    }
 
-function closeMK(){
-  mkModal.classList.remove("show");
-  mkModal.setAttribute("aria-hidden", "true");
-  mkFrame.src = ""; // stop loading
-}
+    document.getElementById("openMediaKit")?.addEventListener("click", openMK);
+    document.getElementById("mkClose")?.addEventListener("click", closeMK);
+    document.getElementById("mkCloseBtn")?.addEventListener("click", closeMK);
 
-document.getElementById("openMediaKit")?.addEventListener("click", openMK);
-document.getElementById("mkClose")?.addEventListener("click", closeMK);
-document.getElementById("mkCloseBtn")?.addEventListener("click", closeMK);
-
-window.addEventListener("keydown", (e)=>{
-  if(e.key === "Escape" && mkModal.classList.contains("show")) closeMK();
-});
+    window.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape" && mkModal.classList.contains("show")) closeMK();
+    });
   </script>
 </body>
 </html>
