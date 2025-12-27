@@ -9,13 +9,10 @@
 
   <style>
     :root{
-      /* Brand */
       --bg:#020A06;
       --brand:#1A472A;
       --ink:#eafff2;
       --muted:#b6e3c5;
-
-      /* UI */
       --line:rgba(234,255,242,.10);
       --shadow: 0 20px 80px rgba(0,0,0,.62);
       --r:18px;
@@ -54,7 +51,6 @@
     .blob{
       position:absolute; width:520px; height:520px; border-radius:999px;
       filter: blur(46px); opacity:.20; mix-blend-mode: screen;
-      transform: translate3d(0,0,0);
       pointer-events:none;
     }
     .b1{background: radial-gradient(circle at 30% 30%, rgba(43,214,115,.70), transparent 60%); top:-230px; left:-170px;}
@@ -73,7 +69,6 @@
     .r3{width:360px;height:360px; left:10%; top:62%; animation-duration: 36s; opacity:.12}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* Layout */
     .container{max-width:1200px; margin:0 auto; padding:0 20px;}
 
     /* NAV */
@@ -86,6 +81,7 @@
     .nav .inner{
       display:flex; align-items:center; justify-content:space-between;
       padding:14px 0;
+      gap:16px;
     }
     .brandBox{display:flex; align-items:center; gap:12px; user-select:none;}
     .brandMark{
@@ -95,24 +91,13 @@
       box-shadow: 0 14px 50px rgba(0,0,0,.45);
       overflow:hidden;
       display:grid; place-items:center;
+      flex: 0 0 auto;
     }
-    .brandMark img{
-      width:100%; height:100%;
-      object-fit:cover;
-      display:block;
-      transform: scale(1.02);
-    }
-    .brandText b{
-      letter-spacing:.18em; font-size:12px; color:rgba(234,255,242,.86);
-      display:block;
-    }
-    .brandText span{
-      display:block; font-weight:900; font-size:16px; letter-spacing:.08em;
-      color:var(--ink);
-      text-transform:uppercase;
-    }
+    .brandMark img{width:100%; height:100%; object-fit:cover; display:block; transform: scale(1.02);}
+    .brandText b{letter-spacing:.18em; font-size:12px; color:rgba(234,255,242,.86); display:block;}
+    .brandText span{display:block; font-weight:900; font-size:16px; letter-spacing:.08em; color:var(--ink); text-transform:uppercase;}
 
-    .links{display:flex; gap:18px; align-items:center;}
+    .links{display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
     .links a{
       color: rgba(234,255,242,.82);
       text-decoration:none;
@@ -121,6 +106,7 @@
       border:1px solid transparent;
       transition:.22s ease;
       text-transform:uppercase;
+      white-space:nowrap;
     }
     .links a:hover{border-color: rgba(234,255,242,.14); background: rgba(234,255,242,.04); color: var(--ink);}
 
@@ -175,10 +161,7 @@
     }
     .heroMain{padding:28px 28px 22px;}
 
-    .heroTop{
-      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
-      margin-bottom:8px;
-    }
+    .heroTop{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:8px;}
     .heroCrest{display:flex; align-items:center; gap:12px;}
     .crest{
       width:62px; height:62px; border-radius:20px;
@@ -271,20 +254,9 @@
 
     /* Sections */
     .section{padding:54px 0;}
-    .sectionHead{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
-      margin-bottom:18px;
-    }
-    .sectionHead h2{
-      margin:0; font-size:26px; letter-spacing:-.01em; text-transform:uppercase;
-    }
-    .sectionHead p{
-      margin:0;
-      color: rgba(182,227,197,.92);
-      max-width:70ch;
-      line-height:1.6;
-      font-size:14px
-    }
+    .sectionHead{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:18px;}
+    .sectionHead h2{margin:0; font-size:26px; letter-spacing:-.01em; text-transform:uppercase;}
+    .sectionHead p{margin:0; color: rgba(182,227,197,.92); max-width:70ch; line-height:1.6; font-size:14px}
 
     .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;}
     .feature{padding:18px}
@@ -307,10 +279,7 @@
       border-top:1px solid rgba(234,255,242,.08);
       margin-top: 30px;
     }
-    .foot{
-      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center;
-      font-size:12px; letter-spacing:.08em; text-transform:uppercase;
-    }
+    .foot{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center; font-size:12px; letter-spacing:.08em; text-transform:uppercase;}
     .social{display:flex; gap:10px}
     .social a{
       text-decoration:none; color: rgba(234,255,242,.86);
@@ -326,19 +295,9 @@
     .reveal.on{opacity:1; transform:none}
 
     /* === MEDIA KIT MODAL (image only) === */
-    .modal{
-      position:fixed;
-      inset:0;
-      display:none;
-      z-index:999;
-    }
+    .modal{position:fixed; inset:0; display:none; z-index:999;}
     .modal.show{display:block}
-    .modal__backdrop{
-      position:absolute;
-      inset:0;
-      background: rgba(0,0,0,.65);
-      backdrop-filter: blur(8px);
-    }
+    .modal__backdrop{position:absolute; inset:0; background: rgba(0,0,0,.65); backdrop-filter: blur(8px);}
     .modal__panel{
       position:relative;
       width: min(1100px, 92vw);
@@ -351,19 +310,12 @@
       overflow:hidden;
     }
     .modal__top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      padding:12px;
-      border-bottom:1px solid rgba(234,255,242,.10);
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      padding:12px; border-bottom:1px solid rgba(234,255,242,.10);
       background: rgba(0,0,0,.20);
     }
     .modal__title{
-      font-weight:900;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      font-size:12px;
+      font-weight:900; letter-spacing:.10em; text-transform:uppercase; font-size:12px;
       color: rgba(234,255,242,.9);
     }
     #mkImg{
@@ -414,6 +366,7 @@
         <a href="#roster">Roster</a>
         <a href="#tournaments">Tournaments</a>
         <a href="#sponsors">Sponsors</a>
+        <a href="./shop.html">Shop</a>
       </nav>
 
       <button class="btn hamb" id="menuBtn" aria-label="Open menu">☰ Menu</button>
@@ -432,7 +385,7 @@
                   <img src="logo.png" alt="Pentalyon logo">
                 </div>
                 <div class="kicker">
-                  <span class="pill">🦁 Pentalyon Pride</span>
+                  <!-- removed "Pentalyon Pride" pill -->
                   <span class="pill">🏆 Competitive</span>
                   <span class="pill">🎥 Content</span>
                 </div>
@@ -447,6 +400,7 @@
 
             <div class="ctaRow">
               <button class="btn primary" id="openMediaKit">Media Kit</button>
+              <a class="btn" href="./shop.html">Shop</a>
               <button class="btn" id="scrollBtn">Explore ↓</button>
             </div>
 
@@ -489,9 +443,7 @@
       <div class="sectionHead reveal">
         <div>
           <h2>About</h2>
-          <p>
-            Pentalyon is an esports project built around competition, content, and community.
-          </p>
+          <p>Pentalyon is an esports project built around competition, content, and community.</p>
         </div>
       </div>
 
@@ -579,12 +531,12 @@
   <script>
     const $ = (q, el=document) => el.querySelector(q);
     const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+
     $("#year").textContent = new Date().getFullYear();
 
-    // Scroll
     $("#scrollBtn").addEventListener("click", () => $("#about").scrollIntoView({behavior:"smooth"}));
 
-    // Reveal
+    // Reveal on scroll
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -610,12 +562,11 @@
       menuBtn.addEventListener("click", ()=> $("#about").scrollIntoView({behavior:"smooth"}));
     }
 
-    // === MEDIA KIT MODAL (image only) ===
+    // Media kit image modal (GitHub Pages safe)
     const mkModal = document.getElementById("mkModal");
     const mkImg = document.getElementById("mkImg");
 
     function openMK(){
-      // IMPORTANT: keep relative path to avoid 404 on GitHub Pages subpaths
       mkImg.src = "./media-kit.png";
       mkModal.classList.add("show");
       mkModal.setAttribute("aria-hidden", "false");
@@ -636,3 +587,4 @@
   </script>
 </body>
 </html>
+
