@@ -1,262 +1,269 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PENTALYON — Esports</title>
-  <link rel="icon" href="logo.png" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PENTALYON — Esports</title>
+<link rel="icon" href="logo.png">
 
-  <style>
-    :root{
-      --bg:#020A06;
-      --brand:#1A472A;
-      --ink:#eafff2;
-      --muted:#b6e3c5;
-      --line:rgba(234,255,242,.10);
-      --r:18px;
-      --shadow: 0 20px 80px rgba(0,0,0,.62);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--ink);
-      background:
-        radial-gradient(1100px 700px at 70% -10%, rgba(26,71,42,.55), transparent 60%),
-        linear-gradient(180deg, #020A06 0%, #07140d 100%);
-      overflow-x:hidden;
-    }
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+<style>
+:root{
+  --bg:#020A06;
+  --brand:#1A472A;
+  --ink:#eafff2;
+  --muted:#b6e3c5;
+  --line:rgba(234,255,242,.10);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  background:
+    radial-gradient(1000px 600px at 70% -10%, rgba(26,71,42,.55), transparent 60%),
+    linear-gradient(180deg,#020A06,#07140d);
+  color:var(--ink);
+}
 
-    /* NAV */
-    .nav{
-      position:sticky;top:0;z-index:20;
-      backdrop-filter: blur(12px);
-      background:rgba(2,10,6,.82);
-      border-bottom:1px solid var(--line);
-    }
-    .nav .inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:44px;height:44px;border-radius:14px;
-      border:1px solid rgba(234,255,242,.14);
-      overflow:hidden;background:rgba(255,255,255,.03)
-    }
-    .logo img{width:100%;height:100%;object-fit:cover;display:block}
-    .name b{display:block;letter-spacing:.18em;font-size:12px;color:rgba(234,255,242,.85)}
-    .name span{display:block;font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:16px}
+/* layout */
+.container{max-width:1100px;margin:auto;padding:0 20px}
 
-    .links{display:flex;gap:14px}
-    .links a{
-      color:rgba(234,255,242,.85);
-      text-decoration:none;
-      font-size:13px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px solid transparent;
-    }
-    .links a:hover{border-color:rgba(234,255,242,.14);background:rgba(255,255,255,.03)}
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:10;
+  backdrop-filter:blur(10px);
+  background:rgba(2,10,6,.85);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 0;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{
+  width:44px;height:44px;border-radius:14px;
+  border:1px solid var(--line);
+}
+.brand b{display:block;font-size:12px;letter-spacing:.18em}
+.brand span{display:block;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.links{display:flex;gap:16px}
+.links a{
+  color:var(--ink);
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:8px 10px;
+  border-radius:12px;
+}
+.links a:hover{background:rgba(255,255,255,.05)}
 
-    /* HERO */
-    .hero{padding:64px 0 20px}
-    .card{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      border-radius:var(--r);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    .heroCard{padding:26px}
-    h1{margin:0 0 10px;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(34px,4.5vw,62px)}
-    .lead{margin:0 0 18px;max-width:60ch;line-height:1.6;color:rgba(234,255,242,.82)}
-    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-    .btn{
-      border:1px solid rgba(234,255,242,.14);
-      background: rgba(26,71,42,.25);
-      color:var(--ink);
-      padding:10px 14px;
-      border-radius:14px;
-      font-weight:800;
-      letter-spacing:.10em;
-      font-size:12px;
-      text-transform:uppercase;
-      cursor:pointer;
-    }
-    .btn.primary{background: linear-gradient(135deg, rgba(43,214,115,.18), rgba(26,71,42,.22));}
-    .btn:hover{transform:translateY(-1px)}
-    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px;max-width:520px}
-    .stat{border:1px solid rgba(234,255,242,.10);border-radius:16px;padding:12px;background:rgba(0,0,0,.12)}
-    .stat .n{font-weight:950;font-size:18px}
-    .stat .l{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(182,227,197,.95)}
+/* HERO */
+.hero{padding:70px 0 30px}
+.card{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px;
+}
+h1{
+  margin:0 0 12px;
+  font-size:clamp(36px,4.5vw,62px);
+  text-transform:uppercase;
+}
+.lead{color:var(--muted);max-width:60ch;line-height:1.6}
+.buttons{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  padding:10px 16px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(26,71,42,.25);
+  color:var(--ink);
+  cursor:pointer;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.btn.primary{
+  background:linear-gradient(135deg,rgba(43,214,115,.2),rgba(26,71,42,.25));
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:18px;
+}
+.stat{
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(0,0,0,.2);
+}
+.stat .n{font-size:18px;font-weight:900}
+.stat .l{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
-    /* SECTIONS */
-    .section{padding:54px 0}
-    .section h2{margin:0 0 10px;text-transform:uppercase}
-    .muted{color:rgba(182,227,197,.92);line-height:1.6}
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
-    .feature{padding:18px}
-    .icon{
-      width:42px;height:42px;border-radius:14px;
-      border:1px solid rgba(234,255,242,.10);
-      background:rgba(255,255,255,.03);
-      display:grid;place-items:center;margin-bottom:10px
-    }
-    .feature h3{margin:0 0 6px;text-transform:uppercase;font-size:14px;letter-spacing:.10em}
-    .feature p{margin:0;color:rgba(182,227,197,.92);line-height:1.6;font-size:13px}
+/* SECTIONS */
+.section{padding:60px 0}
+.section h2{text-transform:uppercase}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.feature{padding:18px}
+.feature h3{text-transform:uppercase;font-size:14px}
+.empty{font-style:italic;color:var(--muted)}
 
-    .empty{font-style:italic;color:rgba(182,227,197,.75)}
-    footer{border-top:1px solid rgba(234,255,242,.08);padding:26px 0;color:rgba(182,227,197,.92);text-transform:uppercase;font-size:12px}
+/* FOOTER */
+footer{
+  border-top:1px solid var(--line);
+  padding:26px 0;
+  font-size:12px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
 
-    /* MODAL */
-    .modal{position:fixed;inset:0;display:none;z-index:999}
-    .modal.show{display:block}
-    .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(8px)}
-    .panel{
-      position:relative;
-      width:min(1100px,92vw);
-      height:min(680px,82vh);
-      margin:7vh auto 0;
-      border-radius:18px;
-      border:1px solid rgba(234,255,242,.12);
-      background:rgba(2,10,6,.78);
-      overflow:hidden;
-      box-shadow:0 30px 120px rgba(0,0,0,.7);
-    }
-    .top{
-      display:flex;justify-content:space-between;align-items:center;gap:12px;
-      padding:12px;border-bottom:1px solid rgba(234,255,242,.10);
-      background:rgba(0,0,0,.20)
-    }
-    .title{font-weight:900;letter-spacing:.10em;text-transform:uppercase;font-size:12px}
-    iframe{width:100%;height:calc(100% - 52px);border:0;background:rgba(0,0,0,.2)}
+/* MODAL */
+.modal{position:fixed;inset:0;display:none;z-index:999}
+.modal.show{display:block}
+.backdrop{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(8px);
+}
+.panel{
+  position:relative;
+  width:min(1100px,92vw);
+  height:min(700px,85vh);
+  margin:6vh auto;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(2,10,6,.85);
+  overflow:hidden;
+}
+.panel-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px;
+  border-bottom:1px solid var(--line);
+}
+.panel-header b{text-transform:uppercase;letter-spacing:.1em}
+.panel img{
+  width:100%;
+  height:calc(100% - 52px);
+  object-fit:contain;
+  display:block;
+  background:#000;
+}
 
-    @media (max-width: 900px){
-      .grid3{grid-template-columns:1fr}
-      .links{display:none}
-    }
-  </style>
+/* responsive */
+@media(max-width:900px){
+  .grid3{grid-template-columns:1fr}
+  .links{display:none}
+}
+</style>
 </head>
 
 <body>
-  <header class="nav">
-    <div class="container inner">
-      <div class="brand">
-        <div class="logo"><img src="logo.png" alt="Pentalyon"></div>
-        <div class="name">
-          <b>PENTALYON</b>
-          <span>Esports</span>
-        </div>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="brand">
+      <img src="logo.png" alt="Pentalyon">
+      <div>
+        <b>PENTALYON</b>
+        <span>Esports</span>
       </div>
-      <nav class="links">
-        <a href="#about">About</a>
-        <a href="#roster">Roster</a>
-        <a href="#tournaments">Tournaments</a>
-        <a href="#sponsors">Sponsors</a>
-      </nav>
     </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <div class="card heroCard">
-        <h1>Dominate the Arena</h1>
-        <p class="lead">Pentalyon is built for competition, identity, and long-term vision.</p>
-        <div class="row">
-          <button class="btn primary" id="openMediaKit">Media Kit</button>
-          <button class="btn" id="explore">Explore ↓</button>
-        </div>
-
-        <div class="stats">
-          <div class="stat"><div class="n">0</div><div class="l">Wins</div></div>
-          <div class="stat"><div class="n">0</div><div class="l">Trophies</div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p class="muted">Pentalyon is an esports project built around competition, content, and community.</p>
-
-      <div class="grid3">
-        <div class="card feature">
-          <div class="icon">🎯</div>
-          <h3>Performance</h3>
-          <p>Training, reviews, and strategy. Every match has a plan.</p>
-        </div>
-        <div class="card feature">
-          <div class="icon">🧠</div>
-          <h3>Mental</h3>
-          <p>Composure and comms: you win together, always.</p>
-        </div>
-        <div class="card feature">
-          <div class="icon">🛡️</div>
-          <h3>Community</h3>
-          <p>Events and an active server: the pride never sleeps.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="roster" class="section">
-      <h2>Roster</h2>
-      <p class="empty">—</p>
-    </section>
-
-    <section id="tournaments" class="section">
-      <h2>Tournaments & Results</h2>
-      <p class="empty">—</p>
-    </section>
-
-    <section id="sponsors" class="section">
-      <h2>Sponsors</h2>
-      <p class="empty">—</p>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">© <span id="year"></span> Pentalyon • Pride Never Sleeps</div>
-  </footer>
-
-  <!-- MODAL -->
-  <div class="modal" id="mkModal" aria-hidden="true">
-    <div class="backdrop" id="mkClose"></div>
-    <div class="panel" role="dialog" aria-modal="true" aria-label="Media Kit">
-      <div class="top">
-        <div class="title">Pentalyon — Media Kit</div>
-        <button class="btn" id="mkCloseBtn">Close</button>
-      </div>
-      <iframe id="mkFrame" src="" title="Media Kit PDF"></iframe>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#roster">Roster</a>
+      <a href="#tournaments">Tournaments</a>
+      <a href="#sponsors">Sponsors</a>
     </div>
   </div>
+</nav>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+<main class="container">
+<section class="hero">
+  <div class="card">
+    <h1>Dominate the Arena</h1>
+    <p class="lead">Pentalyon is built for competition, identity, and long-term vision.</p>
 
-    document.getElementById("explore").addEventListener("click", () => {
-      document.getElementById("about").scrollIntoView({behavior:"smooth"});
-    });
+    <div class="buttons">
+      <button class="btn primary" id="openMediaKit">Media Kit</button>
+      <button class="btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Explore ↓</button>
+    </div>
 
-    const mkModal = document.getElementById("mkModal");
-    const mkFrame = document.getElementById("mkFrame");
+    <div class="stats">
+      <div class="stat"><div class="n">0</div><div class="l">Wins</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">Trophies</div></div>
+    </div>
+  </div>
+</section>
 
-    function openMK(){
-      mkFrame.src = "media-kit.pdf#view=FitH";
-      mkModal.classList.add("show");
-      mkModal.setAttribute("aria-hidden","false");
-    }
-    function closeMK(){
-      mkModal.classList.remove("show");
-      mkModal.setAttribute("aria-hidden","true");
-      mkFrame.src = "";
-    }
+<section id="about" class="section">
+  <h2>About</h2>
+  <p class="lead">An esports project focused on performance, mindset and community.</p>
+  <div class="grid3">
+    <div class="card feature"><h3>Performance</h3><p>Training and strategy.</p></div>
+    <div class="card feature"><h3>Mental</h3><p>Composure and teamwork.</p></div>
+    <div class="card feature"><h3>Community</h3><p>The pride never sleeps.</p></div>
+  </div>
+</section>
 
-    document.getElementById("openMediaKit").addEventListener("click", openMK);
-    document.getElementById("mkClose").addEventListener("click", closeMK);
-    document.getElementById("mkCloseBtn").addEventListener("click", closeMK);
-    window.addEventListener("keydown", (e)=>{ if(e.key==="Escape" && mkModal.classList.contains("show")) closeMK(); });
-  </script>
+<section id="roster" class="section">
+  <h2>Roster</h2>
+  <p class="empty">—</p>
+</section>
+
+<section id="tournaments" class="section">
+  <h2>Tournaments & Results</h2>
+  <p class="empty">—</p>
+</section>
+
+<section id="sponsors" class="section">
+  <h2>Sponsors</h2>
+  <p class="empty">—</p>
+</section>
+</main>
+
+<footer>
+  <div class="container">© <span id="year"></span> Pentalyon — Pride Never Sleeps</div>
+</footer>
+
+<!-- MEDIA KIT MODAL -->
+<div class="modal" id="mkModal">
+  <div class="backdrop" id="mkClose"></div>
+  <div class="panel">
+    <div class="panel-header">
+      <b>Pentalyon — Media Kit</b>
+      <button class="btn" id="mkCloseBtn">Close</button>
+    </div>
+    <img id="mkImg" src="" alt="Media Kit">
+  </div>
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const mkModal = document.getElementById("mkModal");
+const mkImg = document.getElementById("mkImg");
+
+document.getElementById("openMediaKit").onclick = () => {
+  mkImg.src = "media-kit.png";
+  mkModal.classList.add("show");
+};
+
+function closeMK(){
+  mkModal.classList.remove("show");
+  mkImg.src = "";
+}
+document.getElementById("mkClose").onclick = closeMK;
+document.getElementById("mkCloseBtn").onclick = closeMK;
+window.addEventListener("keydown",e=>{
+  if(e.key==="Escape" && mkModal.classList.contains("show")) closeMK();
+});
+</script>
+
 </body>
 </html>
+
+
 
 
