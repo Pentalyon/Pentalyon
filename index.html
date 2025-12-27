@@ -1,270 +1,638 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PENTALYON — Esports</title>
-<link rel="icon" href="logo.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PENTALYON — Esports</title>
+  <meta name="description" content="Pentalyon Esports — official website." />
+  <link rel="icon" href="logo.png" />
 
-<style>
-:root{
-  --bg:#020A06;
-  --brand:#1A472A;
-  --ink:#eafff2;
-  --muted:#b6e3c5;
-  --line:rgba(234,255,242,.10);
-  --radius:18px;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  background:
-    radial-gradient(1000px 600px at 70% -10%, rgba(26,71,42,.55), transparent 60%),
-    linear-gradient(180deg,#020A06,#07140d);
-  color:var(--ink);
-}
+  <style>
+    :root{
+      /* Brand */
+      --bg:#020A06;
+      --brand:#1A472A;
+      --ink:#eafff2;
+      --muted:#b6e3c5;
 
-/* layout */
-.container{max-width:1100px;margin:auto;padding:0 20px}
+      /* UI */
+      --line:rgba(234,255,242,.10);
+      --shadow: 0 20px 80px rgba(0,0,0,.62);
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(1100px 700px at 70% -10%, rgba(26,71,42,.55), transparent 60%),
+        radial-gradient(900px 700px at 10% 10%, rgba(43,214,115,.18), transparent 55%),
+        radial-gradient(900px 800px at 80% 90%, rgba(124,255,180,.12), transparent 55%),
+        linear-gradient(180deg, #020A06 0%, #07140d 100%);
+      overflow-x:hidden;
+    }
 
-/* NAV */
-nav{
-  position:sticky;top:0;z-index:10;
-  backdrop-filter:blur(10px);
-  background:rgba(2,10,6,.85);
-  border-bottom:1px solid var(--line);
-}
-.nav-inner{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 0;
-}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{
-  width:44px;height:44px;border-radius:14px;
-  border:1px solid var(--line);
-}
-.brand b{display:block;font-size:12px;letter-spacing:.18em}
-.brand span{display:block;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
-.links{display:flex;gap:16px}
-.links a{
-  color:var(--ink);
-  text-decoration:none;
-  font-size:13px;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  padding:8px 10px;
-  border-radius:12px;
-}
-.links a:hover{background:rgba(255,255,255,.05)}
+    /* Animated grid backdrop */
+    .grid{
+      position:fixed; inset:0; pointer-events:none; opacity:.18;
+      background-image:
+        linear-gradient(to right, rgba(234,255,242,.10) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(234,255,242,.10) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(650px 420px at 50% 25%, black 40%, transparent 75%);
+      animation:gridMove 16s linear infinite;
+      transform: translateZ(0);
+    }
+    @keyframes gridMove{
+      from{background-position: 0 0, 0 0}
+      to{background-position: 140px 0, 0 140px}
+    }
 
-/* HERO */
-.hero{padding:70px 0 30px}
-.card{
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:26px;
-}
-h1{
-  margin:0 0 12px;
-  font-size:clamp(36px,4.5vw,62px);
-  text-transform:uppercase;
-}
-.lead{color:var(--muted);max-width:60ch;line-height:1.6}
-.buttons{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
-.btn{
-  padding:10px 16px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:rgba(26,71,42,.25);
-  color:var(--ink);
-  cursor:pointer;
-  font-weight:800;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-}
-.btn.primary{
-  background:linear-gradient(135deg,rgba(43,214,115,.2),rgba(26,71,42,.25));
-}
-.stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-top:18px;
-}
-.stat{
-  padding:12px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:rgba(0,0,0,.2);
-}
-.stat .n{font-size:18px;font-weight:900}
-.stat .l{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    /* Glow blobs */
+    .blob{
+      position:absolute; width:520px; height:520px; border-radius:999px;
+      filter: blur(46px); opacity:.20; mix-blend-mode: screen;
+      transform: translate3d(0,0,0);
+      pointer-events:none;
+    }
+    .b1{background: radial-gradient(circle at 30% 30%, rgba(43,214,115,.70), transparent 60%); top:-230px; left:-170px;}
+    .b2{background: radial-gradient(circle at 30% 30%, rgba(26,71,42,.90), transparent 60%); bottom:-270px; right:-210px;}
+    .b3{background: radial-gradient(circle at 30% 30%, rgba(124,255,180,.55), transparent 60%); top:180px; right:-260px;}
 
-/* SECTIONS */
-.section{padding:60px 0}
-.section h2{text-transform:uppercase}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
-.feature{padding:18px}
-.feature h3{text-transform:uppercase;font-size:14px}
-.empty{font-style:italic;color:var(--muted)}
+    .orbits{position:fixed; inset:0; pointer-events:none; opacity:.30;}
+    .ring{
+      position:absolute; border:1px solid rgba(234,255,242,.10);
+      border-radius:999px;
+      filter: drop-shadow(0 0 18px rgba(43,214,115,.08));
+      animation: spin 28s linear infinite;
+    }
+    .r1{width:520px;height:520px; left:55%; top:18%;}
+    .r2{width:820px;height:820px; left:35%; top:35%; animation-duration: 46s; opacity:.14}
+    .r3{width:360px;height:360px; left:10%; top:62%; animation-duration: 36s; opacity:.12}
+    @keyframes spin{to{transform:rotate(360deg)}}
 
-/* FOOTER */
-footer{
-  border-top:1px solid var(--line);
-  padding:26px 0;
-  font-size:12px;
-  text-transform:uppercase;
-  color:var(--muted);
-}
+    /* Layout */
+    .container{max-width:1200px; margin:0 auto; padding:0 20px;}
 
-/* MODAL */
-.modal{position:fixed;inset:0;display:none;z-index:999}
-.modal.show{display:block}
-.backdrop{
-  position:absolute;inset:0;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(8px);
-}
-.panel{
-  position:relative;
-  width:min(1100px,92vw);
-  height:min(700px,85vh);
-  margin:6vh auto;
-  border-radius:18px;
-  border:1px solid var(--line);
-  background:rgba(2,10,6,.85);
-  overflow:hidden;
-}
-.panel-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px;
-  border-bottom:1px solid var(--line);
-}
-.panel-header b{text-transform:uppercase;letter-spacing:.1em}
-.panel img{
-  width:100%;
-  height:calc(100% - 52px);
-  object-fit:contain;
-  display:block;
-  background:#000;
-}
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(2,10,6,.88), rgba(2,10,6,.50));
+      border-bottom: 1px solid var(--line);
+    }
+    .nav .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .brandBox{display:flex; align-items:center; gap:12px; user-select:none;}
+    .brandMark{
+      width:44px; height:44px; border-radius:14px;
+      background: rgba(234,255,242,.04);
+      border:1px solid rgba(234,255,242,.14);
+      box-shadow: 0 14px 50px rgba(0,0,0,.45);
+      overflow:hidden;
+      display:grid; place-items:center;
+    }
+    .brandMark img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.02);
+    }
+    .brandText b{
+      letter-spacing:.18em; font-size:12px; color:rgba(234,255,242,.86);
+      display:block;
+    }
+    .brandText span{
+      display:block; font-weight:900; font-size:16px; letter-spacing:.08em;
+      color:var(--ink);
+      text-transform:uppercase;
+    }
 
-/* responsive */
-@media(max-width:900px){
-  .grid3{grid-template-columns:1fr}
-  .links{display:none}
-}
-</style>
+    .links{display:flex; gap:18px; align-items:center;}
+    .links a{
+      color: rgba(234,255,242,.82);
+      text-decoration:none;
+      font-size:13px; letter-spacing:.10em;
+      padding:10px 10px; border-radius:12px;
+      border:1px solid transparent;
+      transition:.22s ease;
+      text-transform:uppercase;
+    }
+    .links a:hover{border-color: rgba(234,255,242,.14); background: rgba(234,255,242,.04); color: var(--ink);}
+
+    .btn{
+      border:1px solid rgba(234,255,242,.14);
+      background: linear-gradient(135deg, rgba(26,71,42,.35), rgba(43,214,115,.14));
+      color: var(--ink);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:800;
+      letter-spacing:.10em;
+      font-size:12px;
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,.30);
+      text-transform:uppercase;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: 0 18px 46px rgba(0,0,0,.40);}
+    .btn.primary{
+      border-color: rgba(43,214,115,.35);
+      background: linear-gradient(135deg, rgba(43,214,115,.22), rgba(26,71,42,.22));
+    }
+    .hamb{display:none}
+
+    /* HERO */
+    .hero{padding:72px 0 24px; position:relative;}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:26px;
+      align-items:stretch;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(234,255,242,.07), rgba(234,255,242,.03));
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(680px 260px at 30% 0%, rgba(43,214,115,.18), transparent 60%),
+        radial-gradient(700px 340px at 100% 20%, rgba(26,71,42,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .heroMain{padding:28px 28px 22px;}
+
+    .heroTop{
+      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      margin-bottom:8px;
+    }
+    .heroCrest{display:flex; align-items:center; gap:12px;}
+    .crest{
+      width:62px; height:62px; border-radius:20px;
+      border:1px solid rgba(234,255,242,.16);
+      background: rgba(234,255,242,.04);
+      overflow:hidden;
+      box-shadow: 0 18px 70px rgba(0,0,0,.40);
+    }
+    .crest img{width:100%; height:100%; object-fit:cover; display:block;}
+
+    .kicker{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      font-size:12px; color: rgba(234,255,242,.78); letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .pill{
+      padding:7px 10px;
+      border:1px solid rgba(234,255,242,.12);
+      border-radius:999px;
+      background: rgba(234,255,242,.04);
+    }
+
+    h1{
+      margin:10px 0 12px;
+      font-size: clamp(34px, 4.2vw, 64px);
+      line-height:1.02;
+      letter-spacing:-.02em;
+      text-transform:uppercase;
+      text-shadow: 0 0 30px rgba(43,214,115,.18);
+    }
+    .lead{
+      font-size:15px;
+      color: rgba(234,255,242,.82);
+      line-height:1.6;
+      max-width: 56ch;
+      margin: 0 0 18px;
+    }
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top: 18px;}
+
+    .statbar{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+      max-width: 520px;
+    }
+    .stat{
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(234,255,242,.10);
+      background: rgba(0,0,0,.10);
+    }
+    .stat .n{font-weight:950; font-size:18px; letter-spacing:.02em;}
+    .stat .l{font-size:11px; color: rgba(182,227,197,.95); letter-spacing:.12em; text-transform:uppercase;}
+
+    /* Right panel */
+    .heroSide{padding:18px; display:flex; flex-direction:column; gap:12px;}
+    .tile{
+      border:1px solid rgba(234,255,242,.10);
+      border-radius:16px;
+      padding:14px;
+      background: rgba(0,0,0,.12);
+      position:relative;
+      overflow:hidden;
+      min-height: 140px;
+    }
+    .tile:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(420px 180px at 10% 0%, rgba(43,214,115,.16), transparent 55%),
+        radial-gradient(420px 180px at 90% 100%, rgba(26,71,42,.14), transparent 55%);
+      pointer-events:none;
+    }
+    .tile h3{
+      margin:0 0 10px;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color: rgba(234,255,242,.88)
+    }
+    .emptyBox{
+      color: rgba(182,227,197,.72);
+      font-size:13px;
+      line-height:1.6;
+      padding: 4px 0 0;
+      font-style: italic;
+    }
+
+    /* Sections */
+    .section{padding:54px 0;}
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
+      margin-bottom:18px;
+    }
+    .sectionHead h2{
+      margin:0; font-size:26px; letter-spacing:-.01em; text-transform:uppercase;
+    }
+    .sectionHead p{
+      margin:0;
+      color: rgba(182,227,197,.92);
+      max-width:70ch;
+      line-height:1.6;
+      font-size:14px
+    }
+
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;}
+    .feature{padding:18px}
+    .icon{
+      width:42px; height:42px; border-radius:14px;
+      background: rgba(234,255,242,.05);
+      border:1px solid rgba(234,255,242,.10);
+      display:grid; place-items:center;
+      margin-bottom:12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+    }
+    .feature h3{margin:0 0 8px; font-size:14px; letter-spacing:.10em; text-transform:uppercase}
+    .feature p{margin:0; color: rgba(182,227,197,.92); line-height:1.6; font-size:13px}
+
+    .list{padding:18px}
+
+    footer{
+      padding:28px 0 44px;
+      color: rgba(182,227,197,.92);
+      border-top:1px solid rgba(234,255,242,.08);
+      margin-top: 30px;
+    }
+    .foot{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center;
+      font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    }
+    .social{display:flex; gap:10px}
+    .social a{
+      text-decoration:none; color: rgba(234,255,242,.86);
+      padding:10px 12px; border-radius:14px;
+      border:1px solid rgba(234,255,242,.10);
+      background: rgba(234,255,242,.04);
+      transition:.18s ease;
+    }
+    .social a:hover{border-color: rgba(43,214,115,.28); background: rgba(43,214,115,.08); transform: translateY(-1px);}
+
+    /* Reveal */
+    .reveal{opacity:0; transform: translateY(14px); transition: .6s ease;}
+    .reveal.on{opacity:1; transform:none}
+
+    /* === MEDIA KIT MODAL (image only) === */
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      z-index:999;
+    }
+    .modal.show{display:block}
+    .modal__backdrop{
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(8px);
+    }
+    .modal__panel{
+      position:relative;
+      width: min(1100px, 92vw);
+      height: min(720px, 84vh);
+      margin: 7vh auto 0;
+      border-radius: 18px;
+      border: 1px solid rgba(234,255,242,.12);
+      background: rgba(2,10,6,.78);
+      box-shadow: 0 30px 120px rgba(0,0,0,.7);
+      overflow:hidden;
+    }
+    .modal__top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:12px;
+      border-bottom:1px solid rgba(234,255,242,.10);
+      background: rgba(0,0,0,.20);
+    }
+    .modal__title{
+      font-weight:900;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      font-size:12px;
+      color: rgba(234,255,242,.9);
+    }
+    #mkImg{
+      width:100%;
+      height: calc(100% - 52px);
+      object-fit: contain;
+      display:block;
+      background: rgba(0,0,0,.25);
+    }
+
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns: 1fr;}
+      .grid3{grid-template-columns: 1fr}
+      .links{display:none}
+      .hamb{display:inline-flex; gap:8px; align-items:center}
+    }
+    @media (max-width: 420px){
+      .statbar{grid-template-columns: 1fr}
+    }
+  </style>
 </head>
 
 <body>
+  <div class="grid"></div>
+  <div class="orbits">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+  </div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
 
-<nav>
-  <div class="container nav-inner">
-    <div class="brand">
-      <img src="logo.png" alt="Pentalyon">
-      <div>
-        <b>PENTALYON</b>
-        <span>Esports</span>
+  <header class="nav">
+    <div class="container inner">
+      <div class="brandBox" aria-label="Pentalyon">
+        <div class="brandMark" aria-hidden="true">
+          <img src="logo.png" alt="Pentalyon logo">
+        </div>
+        <div class="brandText">
+          <b>PENTALYON</b>
+          <span>Esports</span>
+        </div>
       </div>
+
+      <nav class="links" aria-label="Navigation">
+        <a href="#about">About</a>
+        <a href="#roster">Roster</a>
+        <a href="#tournaments">Tournaments</a>
+        <a href="#sponsors">Sponsors</a>
+      </nav>
+
+      <button class="btn hamb" id="menuBtn" aria-label="Open menu">☰ Menu</button>
     </div>
-    <div class="links">
-      <a href="#about">About</a>
-      <a href="#roster">Roster</a>
-      <a href="#tournaments">Tournaments</a>
-      <a href="#sponsors">Sponsors</a>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="heroGrid">
+        <div class="card reveal">
+          <div class="heroMain">
+
+            <div class="heroTop">
+              <div class="heroCrest">
+                <div class="crest" aria-hidden="true">
+                  <img src="logo.png" alt="Pentalyon logo">
+                </div>
+                <div class="kicker">
+                  <span class="pill">🦁 Pentalyon Pride</span>
+                  <span class="pill">🏆 Competitive</span>
+                  <span class="pill">🎥 Content</span>
+                </div>
+              </div>
+            </div>
+
+            <h1>DOMINATE THE ARENA</h1>
+
+            <p class="lead">
+              Pentalyon is built for competition, identity, and long-term vision.
+            </p>
+
+            <div class="ctaRow">
+              <button class="btn primary" id="openMediaKit">Media Kit</button>
+              <button class="btn" id="scrollBtn">Explore ↓</button>
+            </div>
+
+            <div class="statbar" aria-label="Stats">
+              <div class="stat">
+                <div class="n">0</div>
+                <div class="l">Wins</div>
+              </div>
+              <div class="stat">
+                <div class="n">0</div>
+                <div class="l">Trophies</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <aside class="card reveal">
+          <div class="heroSide">
+            <div class="tile">
+              <h3>Upcoming events</h3>
+              <div class="emptyBox">—</div>
+            </div>
+
+            <div class="tile">
+              <h3>“Hype” mode</h3>
+              <small style="color:rgba(182,227,197,.92); line-height:1.6">
+                Enable/disable extra effects (particles + glow).
+              </small>
+              <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
+                <button class="btn" id="fxToggle">Toggle FX</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section container">
+      <div class="sectionHead reveal">
+        <div>
+          <h2>About</h2>
+          <p>
+            Pentalyon is an esports project built around competition, content, and community.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="card feature reveal">
+          <div class="icon" aria-hidden="true">🎯</div>
+          <h3>Performance</h3>
+          <p>Training, reviews, and strategy. Every match has a plan.</p>
+        </div>
+
+        <div class="card feature reveal">
+          <div class="icon" aria-hidden="true">🧠</div>
+          <h3>Mental</h3>
+          <p>Composure and comms: you win together, always.</p>
+        </div>
+
+        <div class="card feature reveal">
+          <div class="icon" aria-hidden="true">🛡️</div>
+          <h3>Community</h3>
+          <p>Events and an active server: the pride never sleeps.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="roster" class="section container">
+      <div class="sectionHead reveal">
+        <div>
+          <h2>Roster</h2>
+          <p>—</p>
+        </div>
+      </div>
+      <div class="card list reveal">
+        <div class="emptyBox">—</div>
+      </div>
+    </section>
+
+    <section id="tournaments" class="section container">
+      <div class="sectionHead reveal">
+        <div>
+          <h2>Tournaments & Results</h2>
+          <p>—</p>
+        </div>
+      </div>
+      <div class="card list reveal">
+        <div class="emptyBox">—</div>
+      </div>
+    </section>
+
+    <section id="sponsors" class="section container">
+      <div class="sectionHead reveal">
+        <div>
+          <h2>Sponsors</h2>
+          <p>—</p>
+        </div>
+      </div>
+      <div class="card list reveal">
+        <div class="emptyBox">—</div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container foot">
+        <div>© <span id="year"></span> PENTALYON • PRIDE NEVER SLEEPS</div>
+        <div class="social">
+          <a href="#" onclick="return false;">X / Twitter</a>
+          <a href="#" onclick="return false;">YouTube</a>
+          <a href="#" onclick="return false;">TikTok</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- MEDIA KIT MODAL (IMAGE ONLY) -->
+  <div class="modal" id="mkModal" aria-hidden="true">
+    <div class="modal__backdrop" id="mkClose"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Media Kit">
+      <div class="modal__top">
+        <div class="modal__title">Pentalyon — Media Kit</div>
+        <button class="btn" id="mkCloseBtn">Close</button>
+      </div>
+      <img id="mkImg" src="" alt="Pentalyon Media Kit">
     </div>
   </div>
-</nav>
 
-<main class="container">
-<section class="hero">
-  <div class="card">
-    <h1>Dominate the Arena</h1>
-    <p class="lead">Pentalyon is built for competition, identity, and long-term vision.</p>
+  <script>
+    const $ = (q, el=document) => el.querySelector(q);
+    const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+    $("#year").textContent = new Date().getFullYear();
 
-    <div class="buttons">
-      <button class="btn primary" id="openMediaKit">Media Kit</button>
-      <button class="btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Explore ↓</button>
-    </div>
+    // Scroll
+    $("#scrollBtn").addEventListener("click", () => $("#about").scrollIntoView({behavior:"smooth"}));
 
-    <div class="stats">
-      <div class="stat"><div class="n">0</div><div class="l">Wins</div></div>
-      <div class="stat"><div class="n">0</div><div class="l">Trophies</div></div>
-    </div>
-  </div>
-</section>
+    // Reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("on");
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.18});
+    $$(".reveal").forEach(el=> io.observe(el));
 
-<section id="about" class="section">
-  <h2>About</h2>
-  <p class="lead">An esports project focused on performance, mindset and community.</p>
-  <div class="grid3">
-    <div class="card feature"><h3>Performance</h3><p>Training and strategy.</p></div>
-    <div class="card feature"><h3>Mental</h3><p>Composure and teamwork.</p></div>
-    <div class="card feature"><h3>Community</h3><p>The pride never sleeps.</p></div>
-  </div>
-</section>
+    // FX toggle
+    let fxOn = true;
+    $("#fxToggle").addEventListener("click", ()=>{
+      fxOn = !fxOn;
+      $(".grid").style.display = fxOn ? "block" : "none";
+      $(".orbits").style.display = fxOn ? "block" : "none";
+      $$(".blob").forEach(b => b.style.display = fxOn ? "block" : "none");
+    });
 
-<section id="roster" class="section">
-  <h2>Roster</h2>
-  <p class="empty">—</p>
-</section>
+    // Mobile menu quick action
+    const menuBtn = $("#menuBtn");
+    if(menuBtn){
+      menuBtn.addEventListener("click", ()=> $("#about").scrollIntoView({behavior:"smooth"}));
+    }
 
-<section id="tournaments" class="section">
-  <h2>Tournaments & Results</h2>
-  <p class="empty">—</p>
-</section>
+    // === MEDIA KIT MODAL (image only) ===
+    const mkModal = document.getElementById("mkModal");
+    const mkImg = document.getElementById("mkImg");
 
-<section id="sponsors" class="section">
-  <h2>Sponsors</h2>
-  <p class="empty">—</p>
-</section>
-</main>
+    function openMK(){
+      // IMPORTANT: keep relative path to avoid 404 on GitHub Pages subpaths
+      mkImg.src = "./media-kit.png";
+      mkModal.classList.add("show");
+      mkModal.setAttribute("aria-hidden", "false");
+    }
+    function closeMK(){
+      mkModal.classList.remove("show");
+      mkModal.setAttribute("aria-hidden", "true");
+      mkImg.src = "";
+    }
 
-<footer>
-  <div class="container">© <span id="year"></span> Pentalyon — Pride Never Sleeps</div>
-</footer>
+    document.getElementById("openMediaKit")?.addEventListener("click", openMK);
+    document.getElementById("mkClose")?.addEventListener("click", closeMK);
+    document.getElementById("mkCloseBtn")?.addEventListener("click", closeMK);
 
-<!-- MEDIA KIT MODAL -->
-<div class="modal" id="mkModal">
-  <div class="backdrop" id="mkClose"></div>
-  <div class="panel">
-    <div class="panel-header">
-      <b>Pentalyon — Media Kit</b>
-      <button class="btn" id="mkCloseBtn">Close</button>
-    </div>
-    <img id="mkImg" src="" alt="Media Kit">
-  </div>
-</div>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-const mkModal = document.getElementById("mkModal");
-const mkImg = document.getElementById("mkImg");
-
-document.getElementById("openMediaKit").onclick = () => {
-  mkImg.src = "./media-kit.png";
-  mkModal.classList.add("show");
-};
-
-function closeMK(){
-  mkModal.classList.remove("show");
-  mkImg.src = "";
-}
-document.getElementById("mkClose").onclick = closeMK;
-document.getElementById("mkCloseBtn").onclick = closeMK;
-window.addEventListener("keydown",e=>{
-  if(e.key==="Escape" && mkModal.classList.contains("show")) closeMK();
-});
-</script>
-
+    window.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape" && mkModal.classList.contains("show")) closeMK();
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
