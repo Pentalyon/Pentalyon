@@ -137,6 +137,10 @@
       transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
       box-shadow: 0 10px 30px rgba(0,0,0,.30);
       text-transform:uppercase;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
     }
     .btn:hover{transform: translateY(-1px); box-shadow: 0 18px 46px rgba(0,0,0,.40);}
     .btn.primary{
@@ -389,11 +393,14 @@
             <h1>DOMINATE THE ARENA</h1>
 
             <p class="lead">
-              Pentalyon Esports is built for competition, identity, and long-term vision.
+              Pentalyon is built for competition, identity, and long-term vision.
             </p>
 
             <div class="ctaRow">
-              <button class="btn primary" id="kitBtn">Media Kit</button>
+              <!-- Media Kit now opens the PDF file -->
+              <a class="btn primary" href="media-kit.pdf" target="_blank" rel="noopener">
+                Media Kit
+              </a>
               <button class="btn" id="scrollBtn">Explore ↓</button>
             </div>
 
@@ -432,7 +439,7 @@
       </div>
     </section>
 
-    <!-- ABOUT restored (cards) -->
+    <!-- ABOUT (cards) -->
     <section id="about" class="section container">
       <div class="sectionHead reveal">
         <div>
@@ -522,7 +529,6 @@
     $("#year").textContent = new Date().getFullYear();
 
     $("#scrollBtn").addEventListener("click", () => $("#about").scrollIntoView({behavior:"smooth"}));
-    $("#kitBtn").addEventListener("click", () => alert("Media Kit: add a PDF or a dedicated page."));
 
     // Reveal on scroll
     const io = new IntersectionObserver((entries)=>{
