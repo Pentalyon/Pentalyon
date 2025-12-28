@@ -282,15 +282,32 @@
       margin-top: 30px;
     }
     .foot{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center; font-size:12px; letter-spacing:.08em; text-transform:uppercase;}
-    .social{display:flex; gap:10px}
+    .social{display:flex; gap:10px; align-items:center}
     .social a{
       text-decoration:none; color: rgba(234,255,242,.86);
       padding:10px 12px; border-radius:14px;
       border:1px solid rgba(234,255,242,.10);
       background: rgba(234,255,242,.04);
       transition:.18s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
     }
     .social a:hover{border-color: rgba(43,214,115,.28); background: rgba(43,214,115,.08); transform: translateY(-1px);}
+
+    /* TikTok icon button (matches style) */
+    .socialIcon{
+      width:42px; height:42px;
+      padding:0 !important;
+    }
+    .socialIcon:hover{
+      border-color: rgba(43,214,115,.45);
+      background: rgba(43,214,115,.12);
+      color: #2bd673;
+      box-shadow: 0 10px 30px rgba(43,214,115,.25);
+    }
+    .socialIcon svg{display:block}
 
     /* Reveal */
     .reveal{opacity:0; transform: translateY(14px); transition: .6s ease;}
@@ -394,7 +411,7 @@
     .playerCard{
       display:flex;
       gap:12px;
-      align-items:center;
+      align-items:flex-start;
       border:1px solid rgba(234,255,242,.10);
       border-radius:14px;
       background: rgba(2,10,6,.25);
@@ -410,6 +427,7 @@
       font-weight:950;
       letter-spacing:.08em;
       text-transform:uppercase;
+      flex:0 0 auto;
     }
     .playerName{font-weight:900; letter-spacing:.02em;}
     .playerRole{
@@ -419,10 +437,9 @@
       text-transform:uppercase;
       color: rgba(182,227,197,.92);
     }
-
     .miniStats{
       display:flex;
-      gap:10px;
+      gap:8px;
       flex-wrap:wrap;
       margin-top:8px;
     }
@@ -581,7 +598,7 @@
       </div>
     </section>
 
-    <!-- ROSTER (UPDATED WITH YOUR PLAYERS) -->
+    <!-- ROSTER (with your players) -->
     <section id="roster" class="section container">
       <div class="sectionHead reveal">
         <div>
@@ -606,10 +623,9 @@
           <div class="squadBody">
             <div class="squadGrid">
 
-              <!-- (CF) DAXO -->
               <div class="playerCard">
                 <div class="playerAvatar">DX</div>
-                <div class="playerInfo">
+                <div>
                   <div class="playerName">Daxo</div>
                   <div class="playerRole">CF • Striker</div>
                   <div class="miniStats">
@@ -619,10 +635,9 @@
                 </div>
               </div>
 
-              <!-- (CF) GIUSE -->
               <div class="playerCard">
                 <div class="playerAvatar">GI</div>
-                <div class="playerInfo">
+                <div>
                   <div class="playerName">Giuse</div>
                   <div class="playerRole">CF • Striker</div>
                   <div class="miniStats">
@@ -632,10 +647,9 @@
                 </div>
               </div>
 
-              <!-- (CB) GINTOAD -->
               <div class="playerCard">
                 <div class="playerAvatar">GT</div>
-                <div class="playerInfo">
+                <div>
                   <div class="playerName">Gintoad</div>
                   <div class="playerRole">CB • Center Back</div>
                   <div class="miniStats">
@@ -645,10 +659,9 @@
                 </div>
               </div>
 
-              <!-- (CB) PETERF -->
               <div class="playerCard">
                 <div class="playerAvatar">PF</div>
-                <div class="playerInfo">
+                <div>
                   <div class="playerName">Peterf</div>
                   <div class="playerRole">CB • Center Back</div>
                   <div class="miniStats">
@@ -658,23 +671,21 @@
                 </div>
               </div>
 
-              <!-- (CM) MOSITA -->
               <div class="playerCard">
                 <div class="playerAvatar">MO</div>
-                <div class="playerInfo">
+                <div>
                   <div class="playerName">Mosita</div>
                   <div class="playerRole">CM • Midfielder</div>
                   <div class="miniStats">
-                    <span class="miniStat">Goals: 80</span>
+                    <span class="miniStat">Goals: 0</span>
                     <span class="miniStat">Assists: 0</span>
                   </div>
                 </div>
               </div>
 
-              <!-- (GK) EMPTY -->
               <div class="playerCard">
                 <div class="playerAvatar">GK</div>
-                <div class="playerInfo">
+                <div>
                   <div class="playerName">—</div>
                   <div class="playerRole">GK • Goalkeeper</div>
                   <div class="miniStats">
@@ -687,7 +698,7 @@
             </div>
 
             <div class="emptyBox" style="margin-top:12px;">
-              Update stats anytime by editing the Goals/Assists numbers in this section.
+              Update roster anytime by editing names, roles and stats in this section.
             </div>
           </div>
         </details>
@@ -777,10 +788,18 @@
     <footer>
       <div class="container foot">
         <div>© <span id="year"></span> PENTALYON • PRIDE NEVER SLEEPS</div>
+
         <div class="social">
-          <a href="#" onclick="return false;">X / Twitter</a>
-          <a href="#" onclick="return false;">YouTube</a>
-          <a href="#" onclick="return false;">TikTok</a>
+          <!-- TikTok icon only -->
+          <a class="socialIcon"
+             href="https://www.tiktok.com/@pentalyon.esports"
+             target="_blank"
+             rel="noopener"
+             aria-label="TikTok">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M21 8.5a6.5 6.5 0 0 1-5.3-2.7v7.2a5.8 5.8 0 1 1-5.8-5.8c.4 0 .8 0 1.2.1v3a2.8 2.8 0 1 0 2.6 2.8V0h3a6.5 6.5 0 0 0 4.3 4.3z"/>
+            </svg>
+          </a>
         </div>
       </div>
     </footer>
@@ -803,7 +822,6 @@
     const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
 
     $("#year").textContent = new Date().getFullYear();
-
     $("#scrollBtn").addEventListener("click", () => $("#about").scrollIntoView({behavior:"smooth"}));
 
     // Reveal on scroll
@@ -857,4 +875,3 @@
   </script>
 </body>
 </html>
-
