@@ -164,7 +164,7 @@
     .heroMain{padding:28px 28px 22px;}
 
     .heroTop{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:8px;}
-    .heroCrest{display:flex; align-items:center; gap:12px;}
+    .heroCrest{display:flex; align-items:center; gap:12px}
     .crest{
       width:62px; height:62px; border-radius:20px;
       border:1px solid rgba(234,255,242,.16);
@@ -351,6 +351,7 @@
       border-radius:16px;
       background: rgba(0,0,0,.12);
       overflow:hidden;
+      margin-bottom:14px; /* so multiple cards look good */
     }
     .squadCard summary{
       list-style:none;
@@ -370,13 +371,35 @@
       height:92px;
       border-radius:14px;
       border:1px solid rgba(234,255,242,.10);
+      box-shadow: 0 16px 46px rgba(0,0,0,.45);
+      background:
+        radial-gradient(180px 120px at 30% 30%, rgba(43,214,115,.22), transparent 60%),
+        radial-gradient(220px 160px at 80% 60%, rgba(26,71,42,.30), transparent 60%),
+        linear-gradient(135deg, rgba(234,255,242,.06), rgba(0,0,0,.10));
+    }
+    /* individual game banners (images) */
+    .banner-wof{
       background:
         url("world-of-football.png") center/cover no-repeat,
         radial-gradient(180px 120px at 30% 30%, rgba(43,214,115,.22), transparent 60%),
         radial-gradient(220px 160px at 80% 60%, rgba(26,71,42,.30), transparent 60%),
         linear-gradient(135deg, rgba(234,255,242,.06), rgba(0,0,0,.10));
-      box-shadow: 0 16px 46px rgba(0,0,0,.45);
     }
+    .banner-fortnite{
+      background:
+        url("fortnite.png") center/cover no-repeat,
+        radial-gradient(180px 120px at 30% 30%, rgba(43,214,115,.22), transparent 60%),
+        radial-gradient(220px 160px at 80% 60%, rgba(26,71,42,.30), transparent 60%),
+        linear-gradient(135deg, rgba(234,255,242,.06), rgba(0,0,0,.10));
+    }
+    .banner-rocket{
+      background:
+        url("rocket-league.png") center/cover no-repeat,
+        radial-gradient(180px 120px at 30% 30%, rgba(43,214,115,.22), transparent 60%),
+        radial-gradient(220px 160px at 80% 60%, rgba(26,71,42,.30), transparent 60%),
+        linear-gradient(135deg, rgba(234,255,242,.06), rgba(0,0,0,.10));
+    }
+
     .squadMeta{min-width:0;}
     .squadTitle{
       font-weight:950;
@@ -598,31 +621,30 @@
       </div>
     </section>
 
-    <!-- ROSTER (with your players) -->
+    <!-- ROSTER (NOW WITH 3 GAME CARDS) -->
     <section id="roster" class="section container">
       <div class="sectionHead reveal">
         <div>
           <h2>Roster</h2>
-          <p>Click the World Of Football card to view the lineup.</p>
+          <p>Click a card to view the lineup.</p>
         </div>
       </div>
 
       <div class="card list reveal" style="padding:18px;">
+
+        <!-- WORLD OF FOOTBALL -->
         <details class="squadCard">
           <summary class="squadSummary">
-            <div class="squadBanner" aria-hidden="true"></div>
-
+            <div class="squadBanner banner-wof" aria-hidden="true"></div>
             <div class="squadMeta">
               <div class="squadTitle">World Of Football — Squad</div>
               <div class="squadSub">Tap to reveal the players who participated</div>
             </div>
-
             <div class="squadChevron" aria-hidden="true">⌄</div>
           </summary>
 
           <div class="squadBody">
             <div class="squadGrid">
-
               <div class="playerCard">
                 <div class="playerAvatar">DX</div>
                 <div>
@@ -694,7 +716,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
 
             <div class="emptyBox" style="margin-top:12px;">
@@ -702,6 +723,39 @@
             </div>
           </div>
         </details>
+
+        <!-- FORTNITE -->
+        <details class="squadCard">
+          <summary class="squadSummary">
+            <div class="squadBanner banner-fortnite" aria-hidden="true"></div>
+            <div class="squadMeta">
+              <div class="squadTitle">Fortnite — Squad</div>
+              <div class="squadSub">Tap to reveal the active players</div>
+            </div>
+            <div class="squadChevron" aria-hidden="true">⌄</div>
+          </summary>
+
+          <div class="squadBody">
+            <div class="emptyBox" style="margin-top:10px;">—</div>
+          </div>
+        </details>
+
+        <!-- ROCKET LEAGUE -->
+        <details class="squadCard">
+          <summary class="squadSummary">
+            <div class="squadBanner banner-rocket" aria-hidden="true"></div>
+            <div class="squadMeta">
+              <div class="squadTitle">Rocket League — Squad</div>
+              <div class="squadSub">Tap to reveal the active players</div>
+            </div>
+            <div class="squadChevron" aria-hidden="true">⌄</div>
+          </summary>
+
+          <div class="squadBody">
+            <div class="emptyBox" style="margin-top:10px;">—</div>
+          </div>
+        </details>
+
       </div>
     </section>
 
@@ -790,7 +844,6 @@
         <div>© <span id="year"></span> PENTALYON • PRIDE NEVER SLEEPS</div>
 
         <div class="social">
-          <!-- TikTok icon only -->
           <a class="socialIcon"
              href="https://www.tiktok.com/@pentalyon.esports"
              target="_blank"
