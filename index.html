@@ -149,7 +149,7 @@
       border:1px solid var(--line);
       background: linear-gradient(180deg, rgba(234,255,242,.07), rgba(234,255,242,.03));
       border-radius: var(--r);
-      box-shadow: var(--shadow);
+      box-shadow: 0 20px 80px rgba(0,0,0,.62);
       overflow:hidden;
       position:relative;
     }
@@ -296,7 +296,7 @@
     }
     .social a:hover{border-color: rgba(43,214,115,.28); background: rgba(43,214,115,.08); transform: translateY(-1px);}
 
-    /* TikTok icon button (matches style) */
+    /* TikTok icon button */
     .socialIcon{
       width:42px; height:42px;
       padding:0 !important;
@@ -313,7 +313,7 @@
     .reveal{opacity:0; transform: translateY(14px); transition: .6s ease;}
     .reveal.on{opacity:1; transform:none}
 
-    /* === MEDIA KIT MODAL (image only) === */
+    /* MEDIA KIT MODAL */
     .modal{position:fixed; inset:0; display:none; z-index:999;}
     .modal.show{display:block}
     .modal__backdrop{position:absolute; inset:0; background: rgba(0,0,0,.65); backdrop-filter: blur(8px);}
@@ -351,7 +351,7 @@
       border-radius:16px;
       background: rgba(0,0,0,.12);
       overflow:hidden;
-      margin-bottom:14px; /* so multiple cards look good */
+      margin-bottom:14px;
     }
     .squadCard summary{
       list-style:none;
@@ -377,7 +377,6 @@
         radial-gradient(220px 160px at 80% 60%, rgba(26,71,42,.30), transparent 60%),
         linear-gradient(135deg, rgba(234,255,242,.06), rgba(0,0,0,.10));
     }
-    /* individual game banners (images) */
     .banner-wof{
       background:
         url("world-of-football.png") center/cover no-repeat,
@@ -621,7 +620,7 @@
       </div>
     </section>
 
-    <!-- ROSTER (NOW WITH 3 GAME CARDS) -->
+    <!-- ROSTER -->
     <section id="roster" class="section container">
       <div class="sectionHead reveal">
         <div>
@@ -665,6 +664,18 @@
                   <div class="miniStats">
                     <span class="miniStat">Goals: 4</span>
                     <span class="miniStat">Assists: 2</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="playerCard">
+                <div class="playerAvatar">VI</div>
+                <div>
+                  <div class="playerName">Vinci</div>
+                  <div class="playerRole">CB • Center Back</div>
+                  <div class="miniStats">
+                    <span class="miniStat">Goals: 0</span>
+                    <span class="miniStat">Assists: 0</span>
                   </div>
                 </div>
               </div>
@@ -717,10 +728,6 @@
                 </div>
               </div>
             </div>
-
-            <div class="emptyBox" style="margin-top:12px;">
-              Update roster anytime by editing names, roles and stats in this section.
-            </div>
           </div>
         </details>
 
@@ -736,7 +743,23 @@
           </summary>
 
           <div class="squadBody">
-            <div class="emptyBox" style="margin-top:10px;">—</div>
+            <div class="squadGrid">
+              <div class="playerCard">
+                <div class="playerAvatar">GI</div>
+                <div>
+                  <div class="playerName">Giuse</div>
+                  <div class="playerRole">IGL</div>
+                </div>
+              </div>
+
+              <div class="playerCard">
+                <div class="playerAvatar">MO</div>
+                <div>
+                  <div class="playerName">Mosita</div>
+                  <div class="playerRole">FRAGGER</div>
+                </div>
+              </div>
+            </div>
           </div>
         </details>
 
@@ -752,7 +775,23 @@
           </summary>
 
           <div class="squadBody">
-            <div class="emptyBox" style="margin-top:10px;">—</div>
+            <div class="squadGrid">
+              <div class="playerCard">
+                <div class="playerAvatar">KR</div>
+                <div>
+                  <div class="playerName">Krystal</div>
+                  <div class="playerRole">—</div>
+                </div>
+              </div>
+
+              <div class="playerCard">
+                <div class="playerAvatar">CI</div>
+                <div>
+                  <div class="playerName">Ciro</div>
+                  <div class="playerRole">—</div>
+                </div>
+              </div>
+            </div>
           </div>
         </details>
 
@@ -928,4 +967,3 @@
   </script>
 </body>
 </html>
-
